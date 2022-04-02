@@ -2,25 +2,41 @@ import React, { useState } from 'react'
 
 export default function Form(props) {
 
-    const handleClick = () => {
+    const handleUpClick = () => {
         let newText = text.toUpperCase();
         setText(newText);
         // console.log("clicked Convert to upper case");   
+    }
+
+    const handleLoClick = ()=>{
+        let newText = text.toLowerCase();
+        setText(newText)
     }
 
     const handleOnChange = (event) => {
         setText(event.target.value);
     }
 
-    const [text, setText] = useState("Enter text here");
+    const [text, setText] = useState("");
     // console.log(useState("Enter text here"));
     return (
-        <div>
-            <h2 className="heading my-3 ">{props.text}</h2>
-            <div className="py-2">
-                <input type="text" id="myBox" value={text} onChange={handleOnChange} className="form-control"></input>
+        <>
+            <div className="container">
+                <h2 className="heading my-3 ">{props.text}</h2>
+                <div className="py-2">
+                    <input type="text" id="myBox" placeholder='Enter text here' value={text} onChange={handleOnChange} className="form-control"></input>
+                </div>
+                <button className="btn btn-primary my-3" onClick={handleUpClick} >Convert to upper case</button>
+                <button className="btn btn-primary my-3 mx-3" onClick={handleLoClick} >Convert to lower case</button>
             </div>
-            <button className="btn btn-primary my-3" onClick={handleClick} >Convert to upper case</button>
-        </div>
+
+            <div className="container my-5">
+                <h1>Your Text summary</h1>
+                <p>{text.split(" ").length} words, {text.length} char</p>
+                <p>{ 0.008 * text.split(" ").length}mins Read time </p>
+                <h2>Preview</h2>
+                <p>{text}</p>
+            </div>
+        </>
     )
 }

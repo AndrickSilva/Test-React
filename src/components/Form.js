@@ -13,6 +13,19 @@ export default function Form(props) {
         setText(newText)
     }
 
+    const handleClClick = ()=>{
+        let newText = ('');
+        setText(newText)
+    }
+
+    const handleCpClick = ()=>{
+        var text = document.getElementById("myBox");
+        text.select();
+        navigator.clipboard.writeText(text.value);
+    }
+
+    
+
     const handleOnChange = (event) => {
         setText(event.target.value);
     }
@@ -26,8 +39,10 @@ export default function Form(props) {
                 <div className="py-2">
                     <input type="text" id="myBox" placeholder='Enter text here' value={text} onChange={handleOnChange} className="form-control"></input>
                 </div>
-                <button className="btn btn-primary my-3" onClick={handleUpClick} >Convert to upper case</button>
+                <button className="btn btn-primary my-3 " onClick={handleUpClick} >Convert to upper case</button>
                 <button className="btn btn-primary my-3 mx-3" onClick={handleLoClick} >Convert to lower case</button>
+                <button className="btn btn-primary my-3 " onClick={handleClClick} >Clear</button>
+                <button className="btn btn-primary my-3 mx-3" onClick={handleCpClick} >Copy</button>
             </div>
 
             <div className="container my-5">
